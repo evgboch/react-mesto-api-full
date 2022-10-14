@@ -1,0 +1,13 @@
+.photo-cards {
+  max-width: 880px;
+  margin: 0 auto;
+  padding-top: 51px;
+  padding-left: 19px;
+  padding-right: 19px;
+}
+
+@media screen and (max-width: 767px) {
+  .photo-cards {
+    padding-top: 36px;
+  }
+}

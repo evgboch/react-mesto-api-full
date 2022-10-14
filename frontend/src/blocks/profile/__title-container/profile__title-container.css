@@ -1,0 +1,12 @@
+.profile__title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 22px;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__title-container {
+    margin-top: 24px;
+  }
+}

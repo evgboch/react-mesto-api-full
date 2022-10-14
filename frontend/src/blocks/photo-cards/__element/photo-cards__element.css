@@ -1,0 +1,7 @@
+.photo-cards__element {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  line-height: 0;
+}

@@ -1,0 +1,16 @@
+.sign__in-button {
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 0 0 6px;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.sign__in-button:hover {
+  opacity: 0.6;
+}

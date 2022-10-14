@@ -1,0 +1,20 @@
+.photo-cards__delete-button {
+  display: none;
+  border-radius: 0;
+  border: none;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../../../images/delete-button.svg");
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 18px;
+  height: 19px;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+  cursor: pointer;
+}
+
+.photo-cards__delete-button:hover {
+  opacity: 0.6;
+}

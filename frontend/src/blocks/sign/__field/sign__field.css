@@ -1,0 +1,7 @@
+.sign__field {
+  margin-bottom: 30px;
+}
+
+.sign__field:last-of-type {
+  margin-bottom: 0px;
+}

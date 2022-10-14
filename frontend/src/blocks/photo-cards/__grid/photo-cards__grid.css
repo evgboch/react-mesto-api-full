@@ -1,0 +1,11 @@
+.photo-cards__grid {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  row-gap: 20px;
+  column-gap: 17px;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
