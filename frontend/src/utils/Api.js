@@ -88,9 +88,9 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: "https://api.evg.mesto.nomoredomains.icu",
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-44",
   headers: {
-    authorization: localStorage.getItem("jwt"),
+    authorization: "8848ee4a-47e5-4bf2-b34e-b286c4490bd6",
     "Content-Type": "application/json"
   }
 });
