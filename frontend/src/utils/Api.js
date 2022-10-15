@@ -90,7 +90,7 @@ class Api {
 export const api = new Api({
   baseUrl: "https://api.evg.mesto.nomoredomains.icu",
   headers: {
-    authorization: "8848ee4a-47e5-4bf2-b34e-b286c4490bd6",
+    authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json"
   }
 });
