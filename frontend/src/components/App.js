@@ -167,7 +167,23 @@ function App() {
           localStorage.setItem("jwt", res.token);
           setLoggedIn(true);
           setEmail(email);
-          history.push("/");
+
+          auth.getContent(res.token)
+            .then((user) => {
+              setCurrentUser(user);
+
+              api.getInitialCards()
+                .then((data) => {
+                  setCards(data);
+                  history.push("/");
+                })
+                .catch((err) => {
+                  Promise.reject(err);
+                })
+            })
+            .catch((err) => {
+              Promise.reject(err);
+            })
         }
       })
       .catch((err) => {
@@ -196,7 +212,8 @@ function App() {
   function onSignOut() {
     localStorage.removeItem("jwt");
     setLoggedIn(false);
-    setEmail("");
+    setCurrentUser(null);
+    setEmail(null);
     history.push("/signin");
   }
 
