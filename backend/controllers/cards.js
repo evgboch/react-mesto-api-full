@@ -6,7 +6,7 @@ const NotFoundError = require('../errors/NotFound');
 function getCardsList(req, res, next) {
   Card.find({})
     .then((cards) => {
-      res.send(cards.reverse);
+      res.send(cards);
     })
     .catch(next);
 }
