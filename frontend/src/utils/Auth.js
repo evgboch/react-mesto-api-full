@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://evg.mesto.nomoredomains.icu/';
+export const BASE_URL = 'https://api.evg.mesto.nomoredomains.icu/';
 
 function checkResponse(res) {
   if(res.ok) {
