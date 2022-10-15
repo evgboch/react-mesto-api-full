@@ -14,7 +14,7 @@ const app = express();
 
 app.use(helmet());
 app.use(preflightCorsHandler);
-app.use(simpleCorsHandler);
+// app.use(simpleCorsHandler);
 app.use(bodyParser.json());
 app.use(requestLogger);
 app.use(mainRouter);

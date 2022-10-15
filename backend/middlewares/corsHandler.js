@@ -3,15 +3,23 @@ const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
   'localhost:3000',
+  'https://evg.mesto.nomoredomains.icu',
+  'http://evg.mesto.nomoredomains.icu',
 ];
 
 // eslint-disable-next-line consistent-return
 function preflightCorsHandler(req, res, next) {
   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
+  const { origin } = req.headers;
   // сохраняем список заголовков исходного запроса
   const requestHeaders = req.headers['access-control-request-headers'];
   // Значение для заголовка Access-Control-Allow-Methods по умолчанию (разрешены все типы запросов)
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+
+  if (allowedCors.includes(origin)) {
+    // устанавливаем заголовок, который разрешает браузеру запросы с этого источника
+    res.header('Access-Control-Allow-Origin', origin);
+  }
 
   // Если это предварительный запрос, добавляем нужные заголовки
   if (method === 'OPTIONS') {
