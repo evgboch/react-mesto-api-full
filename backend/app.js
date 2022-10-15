@@ -6,15 +6,14 @@ const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const mainRouter = require('./routes/index');
 const catchErrors = require('./middlewares/errors');
-const { preflightCorsHandler, simpleCorsHandler } = require('./middlewares/corsHandler');
+const { corsHandler } = require('./middlewares/corsHandler');
 
 const { PORT = 3000 } = process.env;
 
 const app = express();
 
 app.use(helmet());
-app.use(preflightCorsHandler);
-// app.use(simpleCorsHandler);
+app.use(corsHandler);
 app.use(bodyParser.json());
 app.use(requestLogger);
 app.use(mainRouter);

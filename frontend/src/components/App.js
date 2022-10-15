@@ -6,10 +6,8 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Header from "./Header";
 import Login from "./Login";
 import Register from "./Register";
-// import Main from "./Main";
 import ProtectedRoute from "./ProtectedRoute";
 import Footer from "./Footer";
-// import PopupWithForm from "./PopupWithForm";
 import InfoTooltip from "./InfoTooltip.js";
 import EditProfilePopup from "./EditProfilePopup";
 import AddPlacePopup from "./AddPlacePopup";
@@ -38,7 +36,6 @@ function App() {
       const token = localStorage.getItem("jwt");
       auth.getContent(token)
         .then((res) => {
-          // debugger
           setEmail(res.email);
           setLoggedIn(true);
           history.push("/");
@@ -248,7 +245,6 @@ function App() {
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} buttonText={profileSumitionButtonText} />
         <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} buttonText={placeSumitionButtonText} />
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} buttonText={avatarSumitionButtonText} />
-        {/* <PopupWithForm name="confirmation" title="Вы уверены?" buttonText="Да" /> */}
         <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       </div>
     </CurrentUserContext.Provider>
