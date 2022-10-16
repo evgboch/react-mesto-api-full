@@ -114,8 +114,6 @@ function login(req, res, next) {
   const { email, password } = req.body;
   const { NODE_ENV, JWT_SECRET } = process.env;
 
-  console.log(NODE_ENV, JWT_SECRET);
-
   return User.findUserWithCredentials(email, password)
     .then((user) => {
       // const token = jwt.sign(
@@ -125,11 +123,12 @@ function login(req, res, next) {
       // );
       const token = jwt.sign(
         { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+        // NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+        JWT_SECRET,
         { expiresIn: '7d' },
       );
 
-      res.send({ token });
+      res.send({ JWT_SECRET, NODE_ENV });
     })
     .catch(next);
 }
