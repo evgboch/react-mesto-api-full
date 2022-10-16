@@ -13,7 +13,8 @@ function checkAuthorization(req, res, next) {
 
   jwt.verify(
     token,
-    NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+    // NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+    JWT_SECRET,
     (err, data) => {
       if (err) {
         next(new UnauthorizedError('Необходима авторизация'));
