@@ -3,6 +3,7 @@ const UnauthorizedError = require('../errors/Unauthorized');
 
 function checkAuthorization(req, res, next) {
   const { authorization } = req.headers;
+  const { NODE_ENV, JWT_SECRET } = process.env;
 
   if (!authorization || !authorization.startsWith('Bearer ')) {
     next(new UnauthorizedError('Необходима авторизация'));
@@ -10,13 +11,17 @@ function checkAuthorization(req, res, next) {
 
   const token = authorization.replace('Bearer ', '');
 
-  jwt.verify(token, 'top-secret-key', (err, data) => {
-    if (err) {
-      next(new UnauthorizedError('Необходима авторизация'));
-    }
-    req.user = data;
-    next();
-  });
+  jwt.verify(
+    token,
+    NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+    (err, data) => {
+      if (err) {
+        next(new UnauthorizedError('Необходима авторизация'));
+      }
+      req.user = data;
+      next();
+    },
+  );
 }
 
 module.exports = checkAuthorization;

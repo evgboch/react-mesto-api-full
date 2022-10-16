@@ -112,14 +112,23 @@ function updateUserAvatar(req, res, next) {
 
 function login(req, res, next) {
   const { email, password } = req.body;
+  const { NODE_ENV, JWT_SECRET } = process.env;
+
+  console.log(NODE_ENV, JWT_SECRET);
 
   return User.findUserWithCredentials(email, password)
     .then((user) => {
+      // const token = jwt.sign(
+      //   { _id: user._id },
+      //   'top-secret-key',
+      //   { expiresIn: '7d' },
+      // );
       const token = jwt.sign(
         { _id: user._id },
-        'top-secret-key',
+        NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
         { expiresIn: '7d' },
       );
+
       res.send({ token });
     })
     .catch(next);
