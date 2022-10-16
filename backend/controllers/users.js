@@ -114,23 +114,15 @@ function login(req, res, next) {
   const { email, password } = req.body;
   const { NODE_ENV, JWT_SECRET } = process.env;
 
-  console.log('1223');
-
   return User.findUserWithCredentials(email, password)
     .then((user) => {
-      // const token = jwt.sign(
-      //   { _id: user._id },
-      //   'top-secret-key',
-      //   { expiresIn: '7d' },
-      // );
       const token = jwt.sign(
         { _id: user._id },
-        // NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-        JWT_SECRET,
+        NODE_ENV === 'production' ? JWT_SECRET : 'top-secret',
         { expiresIn: '7d' },
       );
 
-      res.send({ NODE_ENV, JWT_SECRET });
+      res.send({ token });
     })
     .catch(next);
 }
