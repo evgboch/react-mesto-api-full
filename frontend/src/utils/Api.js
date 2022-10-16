@@ -78,7 +78,6 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, isLiked) {
-    // debugger
     if (isLiked) {
       return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: "DELETE",
@@ -98,7 +97,6 @@ class Api {
 export const api = new Api({
   baseUrl: "https://api.evg.mesto.nomoredomains.icu",
   headers: {
-    // authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json"
   }
 });
