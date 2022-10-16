@@ -116,23 +116,23 @@ function login(req, res, next) {
 
   console.log('1223');
 
-  // return User.findUserWithCredentials(email, password)
-    // .then((user) => {
-    //   // const token = jwt.sign(
-    //   //   { _id: user._id },
-    //   //   'top-secret-key',
-    //   //   { expiresIn: '7d' },
-    //   // );
-    //   const token = jwt.sign(
-    //     { _id: user._id },
-    //     // NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-    //     JWT_SECRET,
-    //     { expiresIn: '7d' },
-    //   );
+  return User.findUserWithCredentials(email, password)
+    .then((user) => {
+      // const token = jwt.sign(
+      //   { _id: user._id },
+      //   'top-secret-key',
+      //   { expiresIn: '7d' },
+      // );
+      const token = jwt.sign(
+        { _id: user._id },
+        // NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+        JWT_SECRET,
+        { expiresIn: '7d' },
+      );
 
-    //   res.send('blah blah');
-    // })
-    // .catch(next);
+      res.send({ NODE_ENV, JWT_SECRET });
+    })
+    .catch(next);
 }
 
 function getOwnInfo(req, res, next) {
