@@ -128,7 +128,7 @@ function login(req, res, next) {
         { expiresIn: '7d' },
       );
 
-      res.send({ JWT_SECRET, NODE_ENV });
+      res.send('blah blah');
     })
     .catch(next);
 }
