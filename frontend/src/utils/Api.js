@@ -11,10 +11,17 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
+  _getHeaders() {
+    return {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      ...this._headers
+    }
+  }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: this._headers
+      headers: this._getHeaders()
     })
       .then(this._checkResponse);
   }
@@ -22,7 +29,7 @@ class Api {
   editUserInfo({name, about}) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name,
         about
@@ -34,7 +41,7 @@ class Api {
   editAvatar(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         avatar: link,
       })
@@ -45,7 +52,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
-      headers: this._headers
+      headers: this._getHeaders()
     })
     .then(this._checkResponse);
   }
@@ -53,7 +60,7 @@ class Api {
   addNewCard({name, link}) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: name,
         link: link
@@ -65,22 +72,23 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers
+      headers: this._getHeaders()
     })
     .then(this._checkResponse);
   }
 
   changeLikeCardStatus(cardId, isLiked) {
+    // debugger
     if (isLiked) {
       return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: "DELETE",
-        headers: this._headers
+        headers: this._getHeaders(),
       })
       .then(this._checkResponse);
     } else {
       return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
         method: "PUT",
-        headers: this._headers
+        headers: this._getHeaders(),
       })
       .then(this._checkResponse);
     }
@@ -90,7 +98,7 @@ class Api {
 export const api = new Api({
   baseUrl: "https://api.evg.mesto.nomoredomains.icu",
   headers: {
-    authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    // authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json"
   }
 });

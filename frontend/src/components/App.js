@@ -49,7 +49,7 @@ function App() {
   React.useEffect(() => {
     api.getInitialCards()
       .then((data) => {
-        setCards(data);
+        setCards(data.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -171,7 +171,7 @@ function App() {
 
               api.getInitialCards()
                 .then((data) => {
-                  setCards(data);
+                  setCards(data.reverse());
                   history.push("/");
                 })
                 .catch((err) => {
